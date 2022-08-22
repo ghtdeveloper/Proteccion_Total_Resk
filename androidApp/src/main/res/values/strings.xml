@@ -1,0 +1,122 @@
+<resources>
+    <!-- Splash Screen-->
+    <string name="text_content_img_splash">Image Protección Total Resk</string>
+    <string name="text_splash_screen">Protección Total RESK</string>
+    <!--*****************************************************************************************-->
+    <!--Preview Screen-->
+    <string name="text_preview">Monitorea, supervisa y verifica tu hogar  en tiempo real</string>
+    <string name="text_create_account">Crear cuenta</string>
+    <string name="text_login">Login</string>
+    <string name="text_content_description_img_preview">Imagen previa</string>
+    <!--Sign Up Screen-->
+    <string name="text_toolbar_sign_up">Registrarte</string>
+    <string name="text_hint_email">Email</string>
+    <string name="text_hint_nombre">Nombre completo</string>
+    <string name="text_hint_pass">Contraseña</string>
+    <string name="text_hint_confirm_pass">Confirmar contraseña</string>
+    <string name="text_terms_conditions_1">Al registrarte estarás aceptando nuestros</string>
+    <string name="text_terms_conditions_2">Términos y condiciones </string>
+    <string name="tex_btn_save">Guardar</string>
+    <!--Login Screen-->
+    <string name="text_acceder">Acceder</string>
+    <string name="text_or">OR</string>
+    <!-- Main Menu Screen-->
+    <string name="text_welcome">Bienvenido</string>
+    <string name="text_info_welcome">Controla, monitorea y supervisa tu hogar</string>
+    <!--Weather Info-->
+    <string name="text_climate">Lluvioso</string>
+    <string name="text_place">Santo Domingo</string>
+    <string name="text_temperature">31°C</string>
+    <string name="text_date">18 Jun 202</string>
+    <!--Location Info-->
+    <string name="text_my_location">Mi Localización</string>
+    <string name="text_location">Calle Cercado de Matos, 10 Ingenio,\n Las Palmas, Spain</string>
+    <!-- Emergency Info-->
+    <string name="text_call_emergency">Llamar 112 SOS</string>
+    <string name="text_my_current_pos">Mi posición actual</string>
+    <string name="text_emergencia">Emergencias</string>
+    <string name="text_Alerts">Alertas</string>
+    <string name="text_home">Inicio</string>
+    <string name="text_devices">Dispositivos</string>
+    <string name="text_settings">Ajustes</string>
+    <!--Settings-->
+    <string name="text_email_example">Martinezfriasedison@gmail.com</string>
+    <string name="text_info_ajs_profile">Información personal  y mas</string>
+    <string name="text_notification">Notificaciones</string>
+    <string name="text_info_notif_ajust">Visualiza eventos, alertas de tus dispositivos</string>
+    <string name="text_version_app">Información app</string>
+    <string name="text_version_app_info">Ver versión de la app  y politicas de privacidad
+</string>
+    <string name="text_tem_privacy">Terminos y politica de privacidad</string>
+    <string name="text_copyright">Todos los derechos reservados 2022</string>
+    <string name="text_title_dialog_sign_out">Cerrar Sesión</string>
+    <string name="text_message_sign_out">¿Estas segura que quieres cerrar sesión?</string>
+    <string name="text_yes">Si</string>
+    <string name="text_no">No</string>
+    <string name="text_adm_notific">Administración del hogar o negocio </string>
+    <string name="text_info_adm_app">Crea, edita y personaliza tu hogar</string>
+    <string name="text_sign_out">Cerrar sesión</string>
+    <!--My Profile-->
+    <string name="text_my_profile">Mi Perfil</string>
+    <string name="text_notif">Notificaciones</string>
+    <string name="text_about_app_title">App Info</string>
+    <string name="text_adm_buis">Adm Hogar-Negocio</string>
+    <string name="text_edit">Editar</string>
+    <string name="text_phone">Teléfono </string>
+    <string name="text_address">Dirección</string>
+    <string name="text_country">Pais</string>
+    <string name="text_org">Organización</string>
+    <string name="text_relationship">Parentesco</string>
+    <string name="text_info_change_pass">Necesitas cambiar tu contraseña?, no hay problema lo puedes solicitar</string>
+    <string name="text_here">AQUI
+</string>
+    <string name="text_mak_as_principal">Marcar como contacto principal</string>
+    <string name="text_inf_medical">Info de emergencia</string>
+    <string name="text_info_medica_2">Información médica</string>
+    <string name="text_type_blood">Tipo de sangre</string>
+    <string name="text_condition_Medical">Condición medica</string>
+    <string name="text_medicate">Medicamentos</string>
+    <string name="text_allergies">Alergias</string>
+    <string name="text_contacts">Contactos</string>
+    <!--Notificaciones-->
+    <string name="text_notif_toolbar">Notif Detalles</string>
+    <string name="text_name_disp">Nombre del dispo</string>
+    <string name="text_desc_event">Descripción el evento</string>
+    <string name="text_date_event">Fecha del evento</string>
+    <string name="text_capture_event">Captura del evento</string>
+    <string name="text_report_emergenct">Reportar emergencia</string>
+    <!--*****************************************************************************************-->
+    <string name="text_add_new">Agregar nuevo</string>
+    <string name="text_join">Unirme</string>
+    <string name="text_name">Nombre</string>
+    <string name="text_location_2">Ubicación</string>
+    <string name="text_info_member">Miembros del hogar o negocio</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_splash">SplashActivity</string>
+    <!--******************************************************************************************-->
+    <string name="text_email_not_valid">Email no valido</string>
+    <string name="text_pass_not_match">Las contraseñas no coinciden, favor verifique</string>
+    <string name="tet_policy_pass">La contraseña ingresada es muy corta, debe de tener mas de 6 caracteres</string>
+    <string name="text_user_reg">El registro se realizo de forma correcta, favor acceder con
+        sus credenciales en la seccion de login.</string>
+    <string name="text_title_user_reg">REGISTRO COMPLETO!</string>
+    <string name="text_continuar">Continuar</string>
+    <string name="text_no_empty_fields">No se admiten campos vacios!</string>
+    <string name="text_email_registered_title">Error al validar el email</string>
+    <string name="text_email_registered_message">El email ingresado ya se encuentra registrado,
+        en la pltaforma favor utilice otro</string>
+    <string name="text_login_fail_title">Error autenticacón</string>
+    <string name="text_login_fail">Error al iniciar sesión, por favor intente nuevamente</string>
+    <string name="text_Welcome">Bienvenido!</string>
+    <string name="text_id_cliente_google_sing_in">251126731434-t1gjgj2pd56jed9p8t0selu3mjuedtui.apps.googleusercontent.com</string>
+    <string name="text_info_update">Información actualizada</string>
+    <string name="text_info_error">Error al actualizar</string>
+    <string name="text_btn_registrar">Registrar</string>
+    <string name="textProcesandoDialogo">Procesando…</string>
+    <string name="textVerifyWait">Verificando…</string>
+    <string name="textMensajePorgressBar">Por favor espere</string>
+    <string name="text_do_loginProcess">Iniciando Sesión.....</string>
+    <string name="textGoogle">Continuar con Google </string>
+    <string name="facebook_app_id" translatable="false">1041080333270851
+    </string>
+</resources>

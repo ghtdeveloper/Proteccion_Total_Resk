@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#e60636</color>
+    <color name="colorPrimaryDark">#E20030</color>
+    <color name="colorAccent">#FF5252</color>
+    <color name="primary_white">#FFFFFF</color>
+    <color name="text_black">#050505</color>
+    <color name="btn_color_bakcground">#313445</color>
+    <color name="box_maps_main">#F8F2F2</color>
+    <color name="status_bar">#FF9800</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="color_splash">#E20030</color>
+    <color name="icons">#FFFFFF</color>
+</resources>
