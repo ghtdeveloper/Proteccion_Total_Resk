@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_profile_edit"
+        android:icon="@drawable/ic_baseline_edit_48"
+        android:title="@string/text_edit"
+        android:enabled="true"
+        app:showAsAction="ifRoom">
+    </item>
+    <item
+        android:id="@+id/menu_medical_info"
+        android:icon="@drawable/ic_baseline_local_hospital_48"
+        android:title="@string/text_info_medica_2"
+        android:enabled="true"
+        app:showAsAction="ifRoom">
+    </item>
+
+    <item
+        android:id="@+id/menu_share"
+        android:icon="@drawable/ic_baseline_share_48"
+        android:title="@string/text_share"
+        android:enabled="true"
+        app:showAsAction="ifRoom">
+    </item>
+
+</menu>

@@ -7,44 +7,7 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:251126731434:android:236d3c1e994eee70c976d3",
-        "android_client_info": {
-          "package_name": "savemenow.es.protecciontotalresk"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "251126731434-3astvqe2vrs5po241tl5umlt4e9rgp3g.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "savemenow.es.protecciontotalresk",
-            "certificate_hash": "ab00bbeba2667f2ade302b6a535d56f8a91a4554"
-          }
-        },
-        {
-          "client_id": "251126731434-ckuupalvquvvb116cqpqn54m20anl71p.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDZn-nBvE-dQAl_RHh4VpVbLaeaIUnVrzw"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "251126731434-ckuupalvquvvb116cqpqn54m20anl71p.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:251126731434:android:47ff647bf2a8110dc976d3",
+        "mobilesdk_app_id": "1:251126731434:android:b533de3dc27971e8c976d3",
         "android_client_info": {
           "package_name": "savemenow.es.protecciontotalresk.android"
         }

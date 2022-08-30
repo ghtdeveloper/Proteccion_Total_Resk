@@ -1,6 +1,11 @@
 package savemenow.es.protecciontotalresk.android.util
 
 import java.sql.Timestamp
+import java.text.DateFormat
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
 
 
 /**
@@ -10,14 +15,24 @@ import java.sql.Timestamp
  **/
 class DateTimeStamp {
 
-    private var timestamp: Timestamp? = null
+    private var timestampDateTime: Timestamp? = null
+    val current = LocalDate.now()
+
 
     init {
-        timestamp = Timestamp(System.currentTimeMillis())
+        timestampDateTime = Timestamp(System.currentTimeMillis())
     }
 
     fun getDateTime() : Timestamp?
     {
-        return timestamp
+        return timestampDateTime
     }
+
+    fun getCurrentDate(): String {
+        val formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
+        val formatted = current.format(formatter)
+
+        return formatted
+    }
+
 }

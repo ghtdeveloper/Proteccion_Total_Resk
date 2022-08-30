@@ -30,15 +30,17 @@ class LoginPresenterCompl(private val iLoginView: Contract.ILoginView) : Contrac
                it.query.get().addOnCompleteListener {
                     var fullName = ""
                     var id = ""
+                   var email =""
                    if(it.isSuccessful)
                    {
                        for(document in it.result)
                        {
                            fullName = document["fullName"].toString()
                            id = document["id"].toString()
+                           email = document["email"].toString()
                        }
                    }
-                   iLoginView.showMainMenu(id,fullName)//Pass Params
+                   iLoginView.showMainMenu(id, fullName,email)//Pass Params
                }//OnComplete
 
            }

@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -145,10 +144,11 @@ class LoginActivity : AppCompatActivity(), Contract.ILoginView {
         dialog!!.show()
     }
 
-    override fun showMainMenu(id:String, fullName:String) {
+    override fun showMainMenu(id: String, fullName: String, email: String) {
         val intent = Intent(this,MainActivity::class.java)
         intent.putExtra("id",id)
         intent.putExtra("fullName",fullName)
+        intent.putExtra("email",email)
         startActivity(intent)
     }
 
@@ -183,7 +183,8 @@ class LoginActivity : AppCompatActivity(), Contract.ILoginView {
                             regDate = DateTimeStamp().getDateTime(),
                             uriPhoto = user.photoUrl.toString())
                     ,user.uid)
-                    showMainMenu(user.displayName.toString(), user.displayName.toString())
+                    showMainMenu(user.displayName.toString(), user.displayName.toString(),user.email.
+                    toString())
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w("TAG", "signInWithCredential:failure", task.exception)
@@ -216,7 +217,7 @@ class LoginActivity : AppCompatActivity(), Contract.ILoginView {
                         regDate = DateTimeStamp().getDateTime(),
                         uriPhoto = user.photoUrl.toString())
                     ,user.uid)
-                showMainMenu(user.displayName.toString(), user.displayName.toString())
+                showMainMenu(user.displayName.toString(), user.displayName.toString(),user.email.toString())
             } else {
                 Log.w("TAG", "signInWithCredential:failure", task.exception)
             }

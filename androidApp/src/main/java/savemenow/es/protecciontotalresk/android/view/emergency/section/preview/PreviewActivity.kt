@@ -33,7 +33,8 @@ class PreviewActivity : AppCompatActivity() {
         if(currentUser != null)
         {
             Log.d("TAG","There is a user connected")
-            showDialogRunProcess(currentUser.uid,currentUser.displayName.toString())
+            showDialogRunProcess(currentUser.uid,currentUser.displayName.toString(),currentUser.
+            email.toString())
         }else
         {
             Log.d("TAG","There isn't a user connected")
@@ -41,7 +42,7 @@ class PreviewActivity : AppCompatActivity() {
 
     }
 
-     fun showDialogRunProcess(id:String,fullName:String) {
+     fun showDialogRunProcess(id:String,fullName:String,email:String) {
         val builder = AlertDialog.Builder(this)
         val inflater = layoutInflater
         val viewDialogo = inflater.inflate(R.layout.layout_dialogo_progress_bar, null)
@@ -55,6 +56,7 @@ class PreviewActivity : AppCompatActivity() {
                 val intent = Intent(this, MainActivity::class.java)
                 intent.putExtra("id",id)
                 intent.putExtra("fullName",fullName)
+                intent.putExtra("email",email)
                 startActivity(intent)
                 dialog!!.dismiss()
             } catch (e: InterruptedException) {

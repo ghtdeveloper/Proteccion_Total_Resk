@@ -1,7 +1,9 @@
 package savemenow.es.protecciontotalresk.android.contract
 
 import com.facebook.AccessToken
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.Query
+import savemenow.es.protecciontotalresk.android.model.MedicalInfo
 import savemenow.es.protecciontotalresk.android.model.User
 
 
@@ -28,7 +30,7 @@ interface Contract
         fun initViews()
         fun showAlert()
         fun showDialogRunProcess()
-        fun showMainMenu(id: String, fullName: String)
+        fun showMainMenu(id: String, fullName: String,email:String)
         fun configGoogleAccess()
         fun firebaseAuthGoogle(idToken : String)
         fun firebaseAuthFB(idToken: AccessToken)
@@ -38,7 +40,72 @@ interface Contract
     interface IMainMenuView
     {
         fun initViews()
+        fun onClickBottomNav()
+        fun showSettingsActivity(uid: String,email:String)
     }
+
+
+    interface ISettingsMainView {
+        fun initViews()
+        fun showProfileActivity()
+        fun showNotifActivity()
+        fun showInfoApp()
+        fun showAlertSignOut()
+        fun getEmailUser(uid: String)
+    }
+
+    interface ISettingsAboutApp
+    {
+        fun initViews()
+    }
+
+    interface IProfileMain
+    {
+        fun initViews()
+        fun onClickBottomNav()
+        fun showInfo()
+    }
+
+    interface IProfileEdit
+    {
+        fun initViews()
+        fun showInfo()
+        fun updateProfile()
+        fun showDialogCountry()
+    }
+
+    interface IProfileMedInfoMain {
+        fun initViews()
+        fun showInfo()
+        fun showRecyclerView()
+    }
+
+    interface IProfileMedEdit {
+        fun initViews()
+        fun showInfo()
+        fun saveData()
+        fun showBackActivity()
+    }
+
+    interface IContactsDetal
+    {
+       fun initViews()
+        fun showRecyclerView()
+    }
+
+    interface IViewCountries
+    {
+        fun initViews()
+    }
+
+
+
+
+
+
+
+
+
 
     /**
      *  Presenters Interfaces
@@ -55,10 +122,13 @@ interface Contract
     interface  IFirebasePresenter
     {
         fun addDataSignUp(user: User)
-        fun addDataSignUpAuth(user: User,uid:String)
+        fun addDataSignUpAuth(user: User, uid:String)
+        fun addDataMedInfo(uid: String,medicalInfo: MedicalInfo)
         fun getQueryByEmail(email : String) : Query
-        fun getQueryById(id: String)
+        fun getQueryById(id: String) : Query
         fun getQueryAuth(email: String,pass: String) : Query
+        fun updateUserDocument(uid: String) : DocumentReference
+        fun getMedicalInfo(id: String) : Query
     }
 
     interface ILoginPresenter

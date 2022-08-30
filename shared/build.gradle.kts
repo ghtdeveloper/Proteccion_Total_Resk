@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
+
 plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
@@ -60,6 +62,13 @@ android {
         minSdk = 23
         targetSdk = 32
     }
+    buildFeatures {
+        viewBinding = true
+    }
+
+    dataBinding {
+        isEnabled = true
+    }
 }
 dependencies {
     implementation ("com.google.firebase:firebase-bom:29.0.0")
@@ -70,5 +79,22 @@ dependencies {
     implementation ("com.facebook.android:facebook-android-sdk:4.18.0")
     implementation ("com.facebook.android:facebook-android-sdk:4.18.0")
     implementation ("com.facebook.android:facebook-android-sdk:[8,9)")
+    //Corroutine
+    //implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.3.0")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2")
+    implementation ("com.google.code.gson:gson:2.8.6")
+    implementation ("androidx.activity:activity-ktx:1.2.3")
+    //Glide
+    implementation ("com.github.bumptech.glide:glide:4.13.2")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.13.2")
+    //Circle Image
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
+    //coroutines
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+    //Picassso
+    implementation ("com.squareup.picasso:picasso:2.71828")
+
 
 }

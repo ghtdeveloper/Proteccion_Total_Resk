@@ -1,10 +1,15 @@
-import org.jetbrains.kotlin.storage.CacheResetOnProcessCanceled.enabled
+import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
 
 plugins {
     id("com.android.application")
     kotlin("android")
     id("com.google.gms.google-services")
+    id("kotlin-kapt")
+    id ("com.google.dagger.hilt.android")
+    id("kotlin-parcelize")
+    id ("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
+
 
 android {
     compileSdk = 32
@@ -20,7 +25,13 @@ android {
             isMinifyEnabled = false
         }
     }
+    buildFeatures {
+        viewBinding = true
+    }
 
+    dataBinding {
+       isEnabled = true
+    }
 
 }
 
@@ -40,4 +51,42 @@ dependencies {
     implementation ("com.facebook.android:facebook-android-sdk:4.18.0")
     implementation ("com.facebook.android:facebook-android-sdk:4.18.0")
     implementation ("com.facebook.android:facebook-android-sdk:[8,9)")
+    //implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.3.0")
+    //Glide
+    implementation ("com.github.bumptech.glide:glide:4.13.2")
+    implementation("com.google.android.gms:play-services-location:20.0.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.13.2")
+    //Circle Image
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
+    //coroutines
+    //implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2")
+    implementation ("com.google.code.gson:gson:2.8.6")
+    implementation ("androidx.activity:activity-ktx:1.2.3")
+    //hilt
+    implementation ("com.google.dagger:hilt-android:2.43.2")
+    kapt ("com.google.dagger:hilt-compiler:2.43.2")
+    // retrofit
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.okhttp3:okhttp:4.7.2")
+    implementation ("com.squareup.okhttp3:logging-interceptor:4.7.2")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    //ktx
+    implementation ("androidx.activity:activity-ktx:1.4.0")
+    implementation ("androidx.fragment:fragment-ktx:1.4.1")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1")
+    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.4.1")
+    //VCARD
+    implementation ("com.googlecode.ez-vcard:ez-vcard:0.11.3")
+    //QR
+    implementation("com.journeyapps:zxing-android-embedded:4.3.0")
+    //Maps
+    implementation ("com.google.maps.android:maps-ktx:3.2.1")
+    implementation ("com.google.maps.android:maps-utils-ktx:3.0.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
+    // Dependency to include Maps SDK for Android
+    implementation ("com.google.android.gms:play-services-maps:18.1.0")
+    implementation ("com.google.android.gms:play-services-location:17.0.0")
+
 }

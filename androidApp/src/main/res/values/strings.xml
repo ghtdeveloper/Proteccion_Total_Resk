@@ -1,7 +1,8 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Splash Screen-->
     <string name="text_content_img_splash">Image Protección Total Resk</string>
     <string name="text_splash_screen">Protección Total RESK</string>
+    <string name="text_version_app_no">Versión 1.0</string>
     <!--*****************************************************************************************-->
     <!--Preview Screen-->
     <string name="text_preview">Monitorea, supervisa y verifica tu hogar  en tiempo real</string>
@@ -119,4 +120,9 @@
     <string name="textGoogle">Continuar con Google </string>
     <string name="facebook_app_id" translatable="false">1041080333270851
     </string>
+    <string name="api_key_maps" tools:ignore="Typos">AIzaSyCmJOhM2Jsk2volEdTP1LnU9mtSf-SIig4</string>
+    <string name="text_share">Compartir</string>
+    <string name="text_acces_by">Acceso via:</string>
+    <string name="text_list_countries">Listado de países </string>
+    <string name="mi_localizacion">Mi Localizacion</string>
 </resources>
