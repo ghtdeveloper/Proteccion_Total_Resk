@@ -33,11 +33,8 @@ class CountriesActivity : AppCompatActivity(), Contract.IViewCountries {
         binding = ActivityCountriesBinding.inflate(layoutInflater)
         setContentView(binding.root)
         //Test ViewModel
-
         //Init
          initViews()
-
-
         //Test ViewModel
     }
 

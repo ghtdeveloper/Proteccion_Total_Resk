@@ -125,4 +125,23 @@
     <string name="text_acces_by">Acceso via:</string>
     <string name="text_list_countries">Listado de países </string>
     <string name="mi_localizacion">Mi Localizacion</string>
+    <string name="text_method_contact_emergency">¿De que manera deseas comunicarte con el centro de emergencia?</string>
+    <string name="text_cancel_emergency">Cancelar Emergencia</string>
+    <string name="text_message">Mensaje</string>
+    <string name="text_send_message">Envio de mensajes (Emergencia)</string>
+    <string name="text_cancel_dialog">Cancelar</string>
+    <string name="text_send">Enviar</string>
+    <string name="text_message_send">Mensaje enviado de forma exitosa!</string>
+    <string name="text_type_silente_emergency">Si puedes indica el tipo de incidente </string>
+    <string name="text_title_confirm_emergency">¿Estas seguro de continuar con el reporte? </string>
+    <string name="text_message_confirma_emergeny">Al continuar se estara registrando y suministrado
+        los datos pertinentes al centro de emergencia mas cercano</string>
+    <string name="text_tittle_emergency_success">Emergencia reportada!</string>
+    <string name="text_emergency_success">El reporte se realizo de forma correcta!</string>
+    <string name="text_my_location_btn">Mi Ubicación</string>
+    <string name="text_Emergencias">Emergencias</string>
+    <string name="text_contact_title">Establecer contacto de emergencia</string>
+    <string name="text_contact_message">Deseas guardar este contacto como contacto de emergencia</string>
+    <string name="show_contacts">Ver contactos de emergencia</string>
+    <string name="text_contacto_emergencia">Contactos de emergencia</string>
 </resources>

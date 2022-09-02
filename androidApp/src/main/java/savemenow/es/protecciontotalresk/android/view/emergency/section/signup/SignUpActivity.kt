@@ -10,7 +10,7 @@ import androidx.appcompat.widget.Toolbar
 import com.google.android.material.textfield.TextInputEditText
 import savemenow.es.protecciontotalresk.android.R
 import savemenow.es.protecciontotalresk.android.contract.Contract
-import savemenow.es.protecciontotalresk.android.model.User
+import savemenow.es.protecciontotalresk.android.model.User.User
 import savemenow.es.protecciontotalresk.android.presenter.FirebasePresenterCompl
 import savemenow.es.protecciontotalresk.android.presenter.SignUpPresenterCompl
 import savemenow.es.protecciontotalresk.android.util.DateTimeStamp

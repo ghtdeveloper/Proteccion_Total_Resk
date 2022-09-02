@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.daemon.client.KotlinCompilerClient.compile
 import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
 
 plugins {
@@ -47,6 +48,20 @@ dependencies {
     implementation ("com.google.firebase:firebase-core:20.1.0")
     implementation("com.google.firebase:firebase-firestore-ktx:24.2.2")
     implementation ("com.google.android.gms:play-services-auth:20.2.0")
+    //Firebase ui
+
+    // FirebaseUI for Firebase Realtime Database
+    //implementation ("com.firebaseui:firebase-ui-database:8.0.1")
+
+    // FirebaseUI for Cloud Firestore
+    implementation ("com.firebaseui:firebase-ui-firestore:8.0.1")
+
+    // FirebaseUI for Firebase Auth
+    //implementation 'com.firebaseui:firebase-ui-auth:8.0.1'
+
+    // FirebaseUI for Cloud Storage
+    //implementation 'com.firebaseui:firebase-ui-storage:8.0.1'
+
     //Facebook
     implementation ("com.facebook.android:facebook-android-sdk:4.18.0")
     implementation ("com.facebook.android:facebook-android-sdk:4.18.0")

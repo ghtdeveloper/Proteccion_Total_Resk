@@ -24,7 +24,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import savemenow.es.protecciontotalresk.android.R
 import savemenow.es.protecciontotalresk.android.contract.Contract
-import savemenow.es.protecciontotalresk.android.model.User
+import savemenow.es.protecciontotalresk.android.model.User.User
 import savemenow.es.protecciontotalresk.android.presenter.FirebasePresenterCompl
 import savemenow.es.protecciontotalresk.android.presenter.LoginPresenterCompl
 import savemenow.es.protecciontotalresk.android.util.DateTimeStamp

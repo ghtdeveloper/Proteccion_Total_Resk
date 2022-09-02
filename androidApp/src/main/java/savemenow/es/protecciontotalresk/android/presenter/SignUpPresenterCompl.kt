@@ -1,7 +1,7 @@
 package savemenow.es.protecciontotalresk.android.presenter
 
 import savemenow.es.protecciontotalresk.android.contract.Contract
-import savemenow.es.protecciontotalresk.android.model.User
+import savemenow.es.protecciontotalresk.android.model.User.User
 
 
 /**

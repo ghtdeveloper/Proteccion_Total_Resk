@@ -6,9 +6,12 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
 
     <application
         android:name=".MyApp"
@@ -16,9 +19,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".view.emergency.section.settings.profile.CountriesActivity"
+            android:name=".view.emergency.section.settings.profile.ContactsEmergencttDetail"
             android:theme="@style/materialDesignbyEMF"
             android:exported="false" />
+        <activity
+            android:name=".view.emergency.section.settings.profile.ContactEmergencyList"
+            android:theme="@style/materialDesignbyEMF"
+            android:exported="false" />
+        <activity
+            android:name=".view.emergency.section.settings.profile.CountriesActivity"
+            android:exported="false"
+            android:theme="@style/materialDesignbyEMF" />
         <activity
             android:name=".view.emergency.section.settings.profile.ContactsCompActivity"
             android:exported="false" />
@@ -77,11 +88,9 @@
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/api_key_maps"
-            />
+            android:value="@string/api_key_maps" />
     </application>
 
 </manifest>

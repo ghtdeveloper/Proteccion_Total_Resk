@@ -1,4 +1,4 @@
-package savemenow.es.protecciontotalresk.android.model
+package savemenow.es.protecciontotalresk.android.model.User
 
 
 /**

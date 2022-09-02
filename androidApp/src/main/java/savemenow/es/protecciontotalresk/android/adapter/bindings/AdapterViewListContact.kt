@@ -2,6 +2,7 @@ package savemenow.es.protecciontotalresk.android.adapter.bindings
 
 import android.view.View
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import savemenow.es.protecciontotalresk.android.R
 
@@ -13,6 +14,7 @@ import savemenow.es.protecciontotalresk.android.R
  **/
 class AdapterViewListContact(itemview: View) : RecyclerView.ViewHolder(itemview) {
     //Views
+    val cardView : CardView = itemview.findViewById(R.id.cardViewListContact)
     val tvFullNameContact : TextView = itemview.findViewById(R.id.tvFullNameContact)
     val tvPhoneContact : TextView = itemview.findViewById(R.id.tvPhoneContact)
 }

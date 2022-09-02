@@ -13,7 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
 import savemenow.es.protecciontotalresk.android.R
 import savemenow.es.protecciontotalresk.android.contract.Contract
-import savemenow.es.protecciontotalresk.android.model.MedicalInfo
+import savemenow.es.protecciontotalresk.android.model.User.MedicalInfo
 import savemenow.es.protecciontotalresk.android.presenter.FirebasePresenterCompl
 
 class ProfileMedEditActivity : AppCompatActivity(), Contract.IProfileMedEdit,AdapterView.
@@ -137,7 +137,8 @@ OnItemSelectedListener
                 typBlood = onItemSelect,
                 medContidition = textInputEditTextMedCond.text.toString(),
                 medicate = textInputEditTextMedication.text.toString(),
-                allergies = textInputEditTextAllergies.text.toString()))
+                allergies = textInputEditTextAllergies.text.toString())
+            )
             Toast.makeText(this,R.string.text_info_update, Toast.LENGTH_SHORT).show()
             showBackActivity()//Back
         }else
@@ -148,7 +149,8 @@ OnItemSelectedListener
                 typBlood = onItemSelect,
                 medContidition = textInputEditTextMedCond.text.toString(),
                 medicate = textInputEditTextMedication.text.toString(),
-                allergies = textInputEditTextAllergies.text.toString()))
+                allergies = textInputEditTextAllergies.text.toString())
+            )
             Toast.makeText(this,R.string.text_info_update, Toast.LENGTH_SHORT).show()
             showBackActivity()//Back
 

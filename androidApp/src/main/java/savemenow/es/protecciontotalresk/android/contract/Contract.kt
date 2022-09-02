@@ -3,8 +3,10 @@ package savemenow.es.protecciontotalresk.android.contract
 import com.facebook.AccessToken
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.Query
-import savemenow.es.protecciontotalresk.android.model.MedicalInfo
-import savemenow.es.protecciontotalresk.android.model.User
+import savemenow.es.protecciontotalresk.android.model.User.MedicalInfo
+import savemenow.es.protecciontotalresk.android.model.User.User
+import savemenow.es.protecciontotalresk.android.model.contacts.EmergencyContacts
+import savemenow.es.protecciontotalresk.android.model.reportemergency.EmergencyInfo
 
 
 /**
@@ -124,10 +126,15 @@ interface Contract
         fun addDataSignUp(user: User)
         fun addDataSignUpAuth(user: User, uid:String)
         fun addDataMedInfo(uid: String,medicalInfo: MedicalInfo)
+        fun addEmergencyContact(uid:String,phone:String,emergencyContacts: EmergencyContacts)
+        fun addReportEmergency(uid:String,emergencyInfo: EmergencyInfo)
         fun getQueryByEmail(email : String) : Query
         fun getQueryById(id: String) : Query
+        fun getQueryEmergencyContact(id: String): Query
+        fun getReportEmergency(): Query
         fun getQueryAuth(email: String,pass: String) : Query
         fun updateUserDocument(uid: String) : DocumentReference
+        fun updateContactInfo(uid:String,phone:String) : DocumentReference
         fun getMedicalInfo(id: String) : Query
     }
 
