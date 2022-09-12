@@ -1,14 +1,15 @@
 package savemenow.es.protecciontotalresk.android.view.emergency.section.settings.profile
 
-import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.cardview.widget.CardView
 import com.bumptech.glide.Glide
@@ -34,7 +35,6 @@ class ProfileEditActivity : AppCompatActivity(), Contract.IProfileEdit
     //Objects
     private lateinit var firebasePresenter: FirebasePresenterCompl
     private lateinit var mAuth: FirebaseAuth
-    private lateinit var dialog: AlertDialog
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,7 +55,6 @@ class ProfileEditActivity : AppCompatActivity(), Contract.IProfileEdit
         cardViewEditCountry = findViewById(R.id.cardViewEditCountry)
         tvCountryNameEdit = findViewById(R.id.tvCountryNameEdit)
         imgFlagCountryEdit = findViewById(R.id.imgFlagCountryEdit)
-        //textInputEditTextCountry = findViewById(R.id.textInputEditTextCountry)
         textInputEditTextOrg = findViewById(R.id.textInputEditTextOrg)
         btn_save_edit = findViewById(R.id.btn_save_edit)
         //Config Toolbar
@@ -66,21 +65,11 @@ class ProfileEditActivity : AppCompatActivity(), Contract.IProfileEdit
         //listeners
         btn_save_edit.setOnClickListener {updateProfile() }
         cardViewEditCountry.setOnClickListener { showDialogCountry() }
-        //Veryify Data intent
-        if(intent.getStringExtra("selected_country_name") != null ||
-                intent.getStringExtra("selected_flag_country") != null)
-        {
-            tvCountryNameEdit.text =intent.getStringExtra("selected_country_name")
-            Glide.with(this)
-                .load(Uri.parse(intent.getStringExtra("selected_flag_country")))
-                .into(imgFlagCountryEdit)
-        }
 
     }
 
     override fun onStart() {
         super.onStart()
-
         //Dowload Data
         showInfo()
     }
@@ -98,14 +87,68 @@ class ProfileEditActivity : AppCompatActivity(), Contract.IProfileEdit
                     {
                         for(document in it.result)
                         {
-                            textInputEditTextFullName.setText(document["fullName"].toString())
-                            textInputEditTextPhone.setText(document["phone"].toString())
-                            textInputEditTextAddress.setText(document["address"].toString())
-                            //tvCountryNameEdit.text = document["country"].toString()
-                           /* Glide.with(this)
-                                .load(Uri.parse(document["flagCountry"].toString()))
-                                .into(imgFlagCountryEdit)*/
-                            textInputEditTextOrg.setText(document["company"].toString())
+                            if(document["fullName"].toString().equals(null))
+                            {
+                                textInputEditTextFullName.setText("")
+                            }else
+                            {
+                                textInputEditTextFullName.setText(document["fullName"].toString())
+                            }
+                            if(document["phone"].toString() == "null")
+                            {
+                                textInputEditTextPhone.setText("")
+                            }else
+                            {
+                                textInputEditTextPhone.setText(document["phone"].toString())
+                            }
+                            if(document["address"].toString() == "null")
+                            {
+                                textInputEditTextAddress.setText("")
+                            }else
+                            {
+                                textInputEditTextAddress.setText(document["address"].toString())
+                            }
+                            if(document["company"].toString() == "null")
+                            {
+                                textInputEditTextOrg.setText("")
+                            }else
+                            {
+                                textInputEditTextOrg.setText(document["company"].toString())
+                            }
+
+                            if(intent.getBooleanExtra("edit_country",false))
+                            {
+                                if(intent.getStringExtra("selected_country_name") != null ||
+                                    intent.getStringExtra("selected_flag_country") != null)
+                                {
+                                    tvCountryNameEdit.text =intent.getStringExtra("selected_country_name")
+                                    Glide.with(this)
+                                        .load(Uri.parse(intent.getStringExtra("selected_flag_country")))
+                                        .into(imgFlagCountryEdit)
+                                }
+                            }else{
+
+                                val countryGet : String =document["country"].toString()
+                                val uriFlag : String = document["flagCountry"].toString()
+                                if(countryGet == "null")
+                                {
+                                    tvCountryNameEdit.text = "No Seleccionado"
+                                }else{
+                                    //Log.d("TAG","Country DB $countryGet")
+                                    tvCountryNameEdit.text = countryGet
+                                }
+                                if(uriFlag == "null")
+                                {
+                                    imgFlagCountryEdit.visibility = View.INVISIBLE
+
+                                }else{
+                                    imgFlagCountryEdit.visibility = View.VISIBLE
+                                    Glide.with(this)
+                                        .load(Uri.parse(uriFlag))
+                                        .into(imgFlagCountryEdit)
+                                }
+
+                            }
                         }
                     }
                 }
@@ -118,14 +161,68 @@ class ProfileEditActivity : AppCompatActivity(), Contract.IProfileEdit
                     {
                         for(document in it.result)
                         {
-                            textInputEditTextFullName.setText(document["fullName"].toString())
-                            textInputEditTextPhone.setText(document["phone"].toString())
-                            textInputEditTextAddress.setText(document["address"].toString())
-                            //tvCountryNameEdit.text = document["country"].toString()
-                            /* Glide.with(this)
-                                 .load(Uri.parse(document["flagCountry"].toString()))
-                                 .into(imgFlagCountryEdit)*/
-                            textInputEditTextOrg.setText(document["company"].toString())
+                            if(document["fullName"].toString().equals(null))
+                            {
+                                textInputEditTextFullName.setText("")
+                            }else
+                            {
+                                textInputEditTextFullName.setText(document["fullName"].toString())
+                            }
+                            if(document["phone"].toString() == "null")
+                            {
+                                textInputEditTextPhone.setText("")
+                            }else
+                            {
+                                textInputEditTextPhone.setText(document["phone"].toString())
+                            }
+                            if(document["address"].toString() == "null")
+                            {
+                                textInputEditTextAddress.setText("")
+                            }else
+                            {
+                                textInputEditTextAddress.setText(document["address"].toString())
+                            }
+                            if(document["company"].toString() == "null")
+                            {
+                                textInputEditTextOrg.setText("")
+                            }else
+                            {
+                                textInputEditTextOrg.setText(document["company"].toString())
+                            }
+
+                            if(intent.getBooleanExtra("edit_country",false))
+                            {
+                                if(intent.getStringExtra("selected_country_name") != null ||
+                                    intent.getStringExtra("selected_flag_country") != null)
+                                {
+                                    tvCountryNameEdit.text =intent.getStringExtra("selected_country_name")
+                                    Glide.with(this)
+                                        .load(Uri.parse(intent.getStringExtra("selected_flag_country")))
+                                        .into(imgFlagCountryEdit)
+                                }
+                            }else{
+
+                                val countryGet : String =document["country"].toString()
+                                val uriFlag : String = document["flagCountry"].toString()
+                                if(countryGet == "null")
+                                {
+                                    tvCountryNameEdit.text = "No Seleccionado"
+                                }else{
+                                    //Log.d("TAG","Country DB $countryGet")
+                                    tvCountryNameEdit.text = countryGet
+                                }
+                                if(uriFlag == "null")
+                                {
+                                    imgFlagCountryEdit.visibility = View.INVISIBLE
+
+                                }else{
+                                    imgFlagCountryEdit.visibility = View.VISIBLE
+                                    Glide.with(this)
+                                        .load(Uri.parse(uriFlag))
+                                        .into(imgFlagCountryEdit)
+                                }
+
+                            }
                         }
                     }
                 }

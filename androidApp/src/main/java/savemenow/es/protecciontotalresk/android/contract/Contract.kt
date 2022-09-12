@@ -44,6 +44,7 @@ interface Contract
         fun initViews()
         fun onClickBottomNav()
         fun showSettingsActivity(uid: String,email:String)
+        fun showDeviceActivity(uid: String,email:String)
     }
 
 

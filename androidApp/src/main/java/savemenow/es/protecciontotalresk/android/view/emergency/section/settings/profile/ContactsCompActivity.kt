@@ -3,9 +3,9 @@ package savemenow.es.protecciontotalresk.android.view.emergency.section.settings
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Intent
-import android.graphics.PorterDuff
+import android.database.Cursor
 import android.os.Bundle
-import android.provider.ContactsContract
+import android.provider.ContactsContract.CommonDataKinds
 import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
@@ -23,6 +23,7 @@ import savemenow.es.protecciontotalresk.android.model.contacts.Contacts
 import savemenow.es.protecciontotalresk.android.model.contacts.EmergencyContacts
 import savemenow.es.protecciontotalresk.android.presenter.FirebasePresenterCompl
 
+
 class ContactsCompActivity : AppCompatActivity(), Contract.IContactsDetal {
 
     //Views
@@ -31,6 +32,7 @@ class ContactsCompActivity : AppCompatActivity(), Contract.IContactsDetal {
     //Objects
     private lateinit var customAdapterPhoneLong: CustomAdapterPhoneLong
     private lateinit var listContactPhone: ArrayList<Contacts>
+    private lateinit var listContactPhoneTemp : ArrayList<Contacts>
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var firebasePresenter: FirebasePresenterCompl
     private lateinit var mAuth: FirebaseAuth
@@ -43,6 +45,7 @@ class ContactsCompActivity : AppCompatActivity(), Contract.IContactsDetal {
         mAuth = FirebaseAuth.getInstance()
         setContentView(R.layout.activity_contacts_comp)
         listContactPhone = ArrayList()
+        listContactPhoneTemp = ArrayList()
         initViews()
         Log.d("ID USER",intent.getStringExtra("id").toString())
     }
@@ -68,22 +71,23 @@ class ContactsCompActivity : AppCompatActivity(), Contract.IContactsDetal {
 
     @SuppressLint("Recycle", "Range")
     override fun showRecyclerView() {
-        val phones = contentResolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " ASC")
-        //Iterate
-        while(phones!!.moveToNext())
+        val projection = arrayOf(
+            CommonDataKinds.Phone.CONTACT_ID,
+            CommonDataKinds.Phone.DISPLAY_NAME,
+            CommonDataKinds.Phone.NUMBER
+        )
+        val cursor : Cursor? = contentResolver.query(CommonDataKinds.Phone
+            .CONTENT_URI, projection, null, null, null)
+        while (cursor!!.moveToNext())
         {
-            val name = phones.getString(phones.getColumnIndex(
-                ContactsContract.CommonDataKinds.
-            Phone.DISPLAY_NAME))
-            val phoneNumber = phones.getString(phones.getColumnIndex(
-                ContactsContract.
-            CommonDataKinds.Phone.NUMBER))
+            val name = cursor.getString(1)
+            val phone = cursor.getString(2)
             val contacts = Contacts()
             contacts.setName(name)
-            contacts.setPhone(phoneNumber)
+            contacts.setPhone(phone)
             listContactPhone.add(contacts)
         }
-        phones.close()
+        cursor.close()
         customAdapterPhoneLong = CustomAdapterPhoneLong(listContactPhone, object :
             CustomAdapterPhoneLong.ItemClickListenerContacts{
             override fun clickRow(post: Int) {
@@ -141,6 +145,11 @@ class ContactsCompActivity : AppCompatActivity(), Contract.IContactsDetal {
         Toast.makeText(this,"Contacto agregado!",Toast.LENGTH_SHORT)
             .show()
         dialog.dismiss()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
 }

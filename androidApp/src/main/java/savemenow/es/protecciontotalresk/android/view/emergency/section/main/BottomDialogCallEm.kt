@@ -1,16 +1,17 @@
 package savemenow.es.protecciontotalresk.android.view.emergency.section.main
 
+import android.Manifest
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.telephony.SmsManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
@@ -35,6 +36,8 @@ class BottomDialogCallEm(context:Context) : BottomSheetDialogFragment()
     private lateinit var  list: ArrayList<String>
     private lateinit var mAuth: FirebaseAuth
 
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -47,8 +50,29 @@ class BottomDialogCallEm(context:Context) : BottomSheetDialogFragment()
         dialogSilentEmergency = BottomDialogSilentEmergency(context!!)
         binding = BottomDialogCallEmergencyBinding.inflate(layoutInflater)
         init()
-
         return binding.root
+    }
+
+
+    private var requestPermissionLauncherCall = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        if (isGranted) {
+            makeCall("888")
+            sendNotification()
+        } else {
+            showAlert()
+        }
+    }
+
+   private var requestPermissionLauncherSendNotf = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        if (isGranted) {
+            showDialogMessage("888")
+        } else {
+            showAlert()
+        }
     }
 
     fun init()
@@ -59,14 +83,12 @@ class BottomDialogCallEm(context:Context) : BottomSheetDialogFragment()
             this.dismiss()
         }
         binding.imgCall.setOnClickListener {
-            //Toast.makeText(context,"DO CALL",Toast.LENGTH_SHORT).show()
-            makeCall("888")
-            sendNotification()
+            requestPermissionLauncherCall.launch(Manifest.permission.CALL_PHONE)
+            requestPermissionLauncherCall.launch(Manifest.permission.SEND_SMS)
         }
         binding.imgChat.setOnClickListener {
             //Example +8293403254
-            showDialogMessage("888")
-
+            requestPermissionLauncherSendNotf.launch(Manifest.permission.SEND_SMS)
         }
         binding.imgSilenceCall.setOnClickListener {
             val bundle = Bundle()
@@ -159,6 +181,17 @@ class BottomDialogCallEm(context:Context) : BottomSheetDialogFragment()
         }
     }
 
+    private fun showAlert() {
+        val builder = AlertDialog.Builder(context)
+        builder.setTitle(R.string.text_permission_necesary)
+        builder.setMessage(R.string.text_request_call_phone_sms)
+        builder.setNegativeButton(
+            R.string.text_continuar
+        ) { dialog, which ->
 
+        }
+        val dialog = builder.create()
+        dialog.show()
+    }
 
 }

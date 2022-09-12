@@ -1,11 +1,15 @@
 package savemenow.es.protecciontotalresk.android.view.emergency.section.settings.profile
 
+import android.Manifest
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.Intent
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.cardview.widget.CardView
 import androidx.lifecycle.lifecycleScope
@@ -18,6 +22,7 @@ import savemenow.es.protecciontotalresk.android.adapter.adapter.CustomAdapterPho
 import savemenow.es.protecciontotalresk.android.contract.Contract
 import savemenow.es.protecciontotalresk.android.model.contacts.Contacts
 import savemenow.es.protecciontotalresk.android.presenter.FirebasePresenterCompl
+import savemenow.es.protecciontotalresk.android.util.PermissionsAdm
 
 class ProfileMednfoActivity : AppCompatActivity(), Contract.IProfileMedInfoMain {
 
@@ -44,6 +49,7 @@ class ProfileMednfoActivity : AppCompatActivity(), Contract.IProfileMedInfoMain 
         listContactPhone = ArrayList()
         //Init
         initViews()
+
     }
 
     override fun onStart() {

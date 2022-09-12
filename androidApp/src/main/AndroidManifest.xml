@@ -19,52 +19,56 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".view.emergency.section.settings.profile.ContactsEmergencttDetail"
-            android:theme="@style/materialDesignbyEMF"
+            android:name=".view.smart.device.section.main.DeviceMainActivity"
+            android:theme="@style/materialDesignbyEMFDevice"
             android:exported="false" />
         <activity
+            android:name=".view.emergency.section.settings.profile.ContactsEmergencttDetail"
+            android:exported="false"
+            android:theme="@style/materialDesignbyEMFEmergency" />
+        <activity
             android:name=".view.emergency.section.settings.profile.ContactEmergencyList"
-            android:theme="@style/materialDesignbyEMF"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/materialDesignbyEMFEmergency" />
         <activity
             android:name=".view.emergency.section.settings.profile.CountriesActivity"
             android:exported="false"
-            android:theme="@style/materialDesignbyEMF" />
+            android:theme="@style/materialDesignbyEMFEmergency" />
         <activity
             android:name=".view.emergency.section.settings.profile.ContactsCompActivity"
             android:exported="false" />
         <activity
             android:name=".view.emergency.section.settings.profile.ProfileMedEditActivity"
             android:exported="false"
-            android:theme="@style/materialDesignbyEMF" />
+            android:theme="@style/materialDesignbyEMFEmergency" />
         <activity
             android:name=".view.emergency.section.settings.profile.ProfileMednfoActivity"
             android:exported="false"
-            android:theme="@style/materialDesignbyEMF" />
+            android:theme="@style/materialDesignbyEMFEmergency" />
         <activity
             android:name=".view.emergency.section.settings.profile.ProfileEditActivity"
             android:exported="false"
-            android:theme="@style/materialDesignbyEMF" />
+            android:theme="@style/materialDesignbyEMFEmergency" />
         <activity
             android:name=".view.emergency.section.settings.profile.ProfileMainActivity"
             android:exported="false"
-            android:theme="@style/materialDesignbyEMF" />
+            android:theme="@style/materialDesignbyEMFEmergency" />
         <activity
             android:name=".view.emergency.section.settings.aboutApp.AboutAppActivity"
             android:exported="false"
-            android:theme="@style/materialDesignbyEMF" />
+            android:theme="@style/materialDesignbyEMFEmergency" />
         <activity
             android:name=".view.emergency.section.settings.home.SettingsMain"
             android:exported="false"
-            android:theme="@style/materialDesignbyEMF" />
+            android:theme="@style/materialDesignbyEMFEmergency" />
         <activity
             android:name=".view.emergency.section.login.LoginActivity"
             android:exported="false"
-            android:theme="@style/materialDesignbyEMF" />
+            android:theme="@style/materialDesignbyEMFEmergency" />
         <activity
             android:name=".view.emergency.section.signup.SignUpActivity"
             android:exported="false"
-            android:theme="@style/materialDesignbyEMF" />
+            android:theme="@style/materialDesignbyEMFEmergency" />
         <activity
             android:name=".view.emergency.section.preview.PreviewActivity"
             android:exported="false" />
@@ -80,7 +84,7 @@
         <activity
             android:name=".view.emergency.section.main.MainActivity"
             android:exported="true"
-            android:theme="@style/materialDesignbyEMF" />
+            android:theme="@style/materialDesignbyEMFEmergency" />
 
         <meta-data
             android:name="preloaded_fonts"

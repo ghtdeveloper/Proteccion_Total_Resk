@@ -1,5 +1,6 @@
 package savemenow.es.protecciontotalresk.android.view.emergency.section.main
 
+import android.Manifest
 import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
@@ -9,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.GeoPoint
@@ -74,6 +76,16 @@ class BottomDialogSilentEmergency( context: Context) :  BottomSheetDialogFragmen
         }
     }
 
+    private var requestPermissionLauncherSendNotf = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        if (isGranted) {
+          sendNotification()
+        } else {
+            showAlert()
+        }
+    }
+
     fun showDialogConfirm(type:String)
     {
         val builder = AlertDialog.Builder(context)
@@ -99,7 +111,7 @@ class BottomDialogSilentEmergency( context: Context) :  BottomSheetDialogFragmen
                 ))
                 //sendNotification(type)//Send Msg
             }
-            sendNotification()
+            requestPermissionLauncherSendNotf.launch(Manifest.permission.SEND_SMS)
             showDialogSuccess()//Success
 
         }
@@ -186,6 +198,19 @@ class BottomDialogSilentEmergency( context: Context) :  BottomSheetDialogFragmen
                 null,null)
             Log.d("NOTIF",value)
         }
+    }
+
+    private fun showAlert() {
+        val builder = AlertDialog.Builder(context)
+        builder.setTitle(R.string.text_permission_necesary)
+        builder.setMessage(R.string.text_request_call_phone_sms)
+        builder.setNegativeButton(
+            R.string.text_continuar
+        ) { dialog, which ->
+
+        }
+        val dialog = builder.create()
+        dialog.show()
     }
 
 }

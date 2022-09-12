@@ -78,6 +78,7 @@ class CountriesActivity : AppCompatActivity(), Contract.IViewCountries {
                             override fun clickRow(post: Int) {
                                 val intent = Intent(this@CountriesActivity,
                                     ProfileEditActivity::class.java)
+                                intent.putExtra("edit_country",true)
                                 intent.putExtra("selected_country_name",adapterListCountries.
                                 getCountryName())
                                 intent.putExtra("selected_flag_country",adapterListCountries.
@@ -93,13 +94,9 @@ class CountriesActivity : AppCompatActivity(), Contract.IViewCountries {
 
     }
 
-
-
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
     }
-
-
 
 }

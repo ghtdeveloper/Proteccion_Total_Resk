@@ -144,4 +144,15 @@
     <string name="text_contact_message">Deseas guardar este contacto como contacto de emergencia</string>
     <string name="show_contacts">Ver contactos de emergencia</string>
     <string name="text_contacto_emergencia">Contactos de emergencia</string>
+    <string name="text_request_location">Para brindarte un mejor resultado es necesario, que nos permita obtener tu ubicacion en tiempo real,
+        por favor habilita el permiso</string>
+    <string name="text_permission_necesary">PERMISO NECESARIO</string>
+    <string name="text_request_call_phone_sms">Para brindarte un mejor resultado es necesario, que nos permita realizar llamadas y enviar SMS ,
+        por favor habilita dichos permiso</string>
+    <string name="text_request_contact_info">Para brindarte un mejor resultado es necesario, que nos permita obtener los contactos de tu agenda,
+        por favor habilita dichos permiso</string>
+    <string name="text_error">Error</string>
+    <string name="text_not_network">Tu estas sin internet ahora mismo, se requiere que tengas conexión
+        al internet. Por favor apaga el modo avión o conectate
+        vía WiFi o con tus datos moviles.</string>
 </resources>

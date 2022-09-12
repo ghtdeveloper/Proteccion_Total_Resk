@@ -1,5 +1,7 @@
 package savemenow.es.protecciontotalresk.android.view.emergency.section.settings.profile
 
+import android.Manifest
+import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
@@ -9,6 +11,7 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.lifecycleScope
@@ -41,16 +44,38 @@ class ProfileMainActivity : AppCompatActivity() , Contract.IProfileMain
     private lateinit var bitmapPath : String
     private lateinit var bitmpaUri : Uri
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile_main)
         firebasePresenter = FirebasePresenterCompl()
         mAuth = FirebaseAuth.getInstance()
-
         //Init
         initViews()
+    }
+
+    private var requestPermissionAccessContact = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        if (isGranted) {
+            val intent = Intent(this,ProfileMednfoActivity::class.java)
+            intent.putExtra("id",intent.getStringExtra("id"))
+            startActivity(intent)
+        } else {
+            showAlert()
+        }
+    }
+
+    private fun showAlert() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(R.string.text_permission_necesary)
+        builder.setMessage(R.string.text_request_contact_info)
+        builder.setNegativeButton(
+            R.string.text_continuar
+        ) { dialog, which ->
+            this.finishAffinity()
+        }
+        val dialog = builder.create()
+        dialog.show()
     }
 
     override fun initViews()
@@ -119,9 +144,7 @@ class ProfileMainActivity : AppCompatActivity() , Contract.IProfileMain
 
                 R.id.menu_medical_info ->
                 {
-                    val intent = Intent(this,ProfileMednfoActivity::class.java)
-                    intent.putExtra("id",intent.getStringExtra("id"))
-                    startActivity(intent)
+                    requestPermissionAccessContact.launch(Manifest.permission.READ_CONTACTS)
                 }
 
                 R.id.menu_share ->
@@ -144,7 +167,8 @@ class ProfileMainActivity : AppCompatActivity() , Contract.IProfileMain
             lifecycleScope.launch {
                 tvFullNameProfile.text = mAuth.currentUser!!.displayName
                 tvEmailProfile.text = mAuth.currentUser!!.email
-                Glide.with(this@ProfileMainActivity).load(mAuth.currentUser!!.photoUrl).into(imgProfile)
+                Glide.with(this@ProfileMainActivity).load(mAuth.currentUser!!.photoUrl)
+                    .into(imgProfile)
 
                 firebasePresenter.getQueryById(
                   currentUser.uid).get().addOnCompleteListener {
@@ -158,11 +182,8 @@ class ProfileMainActivity : AppCompatActivity() , Contract.IProfileMain
                                company = document.getString("company").
                                toString()), size = screenWidth))
                     }
-
                 }
-
             }
-
         }//If ednd
         else
         {

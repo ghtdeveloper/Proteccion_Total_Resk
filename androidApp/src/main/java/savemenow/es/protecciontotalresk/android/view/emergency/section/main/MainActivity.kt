@@ -1,6 +1,8 @@
 package savemenow.es.protecciontotalresk.android.view.emergency.section.main
 
+import android.app.AlertDialog
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
 import android.location.Location
@@ -19,7 +21,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptor
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.GeoPoint
 import com.google.firebase.firestore.ktx.toObjects
 import com.google.maps.android.ktx.addMarker
@@ -39,7 +41,9 @@ import savemenow.es.protecciontotalresk.android.model.reportemergency.EmergencyI
 import savemenow.es.protecciontotalresk.android.presenter.FirebasePresenterCompl
 import savemenow.es.protecciontotalresk.android.util.BitmapHelper
 import savemenow.es.protecciontotalresk.android.util.DateTimeStamp
+import savemenow.es.protecciontotalresk.android.util.PermissionsAdm
 import savemenow.es.protecciontotalresk.android.view.emergency.section.settings.home.SettingsMain
+import savemenow.es.protecciontotalresk.android.view.smart.device.section.main.DeviceMainActivity
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -52,6 +56,7 @@ class MainActivity : AppCompatActivity(), Contract.IMainMenuView, OnMapReadyCall
     private lateinit var result: ArrayList<Weather>
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var presenterFirebase : FirebasePresenterCompl
+    private var REQUEST_LOCATION_CODE : Int = 0
     private lateinit var dialogCallEm: BottomDialogCallEm
     private var addressPlace =""
     private var latitudeGet =0.0
@@ -66,10 +71,17 @@ class MainActivity : AppCompatActivity(), Contract.IMainMenuView, OnMapReadyCall
         presenterFirebase = FirebasePresenterCompl()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-        dialogCallEm = BottomDialogCallEm(this)
-        //Init
-        initViews()
+        if(PermissionsAdm.requestPermission(this,REQUEST_LOCATION_CODE,android.Manifest
+                .permission.ACCESS_FINE_LOCATION))
+        {
+            fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+            dialogCallEm = BottomDialogCallEm(this)
+            //Init
+            initViews()
+        }else
+        {
+            Toast.makeText(this,"Permiso no granted",Toast.LENGTH_SHORT).show()
+        }
 
     }
 
@@ -105,8 +117,47 @@ class MainActivity : AppCompatActivity(), Contract.IMainMenuView, OnMapReadyCall
         getViewMaps()
     }
 
+    /*
+        Adm Permission
+     */
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when(requestCode)
+        {
+            REQUEST_LOCATION_CODE ->
+            {
+                if(grantResults.isNotEmpty() && grantResults[0] ==
+                    PackageManager.PERMISSION_GRANTED)
+                {
+                    finish()
+                    startActivity(intent)
+                }else{
+                    //Toast.makeText(this,"Permiso necesario",Toast.LENGTH_SHORT).show()
+                    /*Snackbar.make(binding.root,R.string.text_request_location,Snackbar.LENGTH_SHORT)
+                        .show()*/
+                    showAlert()
 
+                }
+            }
+        }
+    }
 
+    private fun showAlert() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(R.string.text_permission_necesary)
+        builder.setMessage(R.string.text_request_location)
+        builder.setNegativeButton(
+            R.string.text_continuar
+        ) { dialog, which ->
+            this.finishAffinity()
+        }
+        val dialog = builder.create()
+        dialog.show()
+    }
 
     fun getViewMaps()
     {
@@ -123,35 +174,44 @@ class MainActivity : AppCompatActivity(), Contract.IMainMenuView, OnMapReadyCall
                 longitudeGet = location.longitude
             }
             geocoder = Geocoder(this, Locale.getDefault())
-            val listAdress : List<Address> =geocoder!!.getFromLocation(location!!.latitude,
-                location!!.longitude,1)
-            val obj : Address = listAdress[0]
 
-           // Log.d("TAG","ADDRESS PLACE${obj.getAddressLine(0)}")
-            addressPlace=obj.getAddressLine(0)
+            try{
+                val listAdress : List<Address> =geocoder!!.getFromLocation(location!!.latitude,
+                    location.longitude,1)
+                val obj : Address = listAdress[0]
 
-            binding.tvPlaceName.text = obj.getAddressLine(0)
-            //Fetch Data WS
-            getDataWeather(location.latitude,location.longitude)
-            //Maps
-            lifecycleScope.launchWhenCreated {
-                val mapFragment: SupportMapFragment? =
-                    supportFragmentManager.findFragmentById(R.id.map_fragment) as? SupportMapFragment
-                val googleMap: GoogleMap? = mapFragment?.awaitMap()
-                googleMap!!.setInfoWindowAdapter(MarkerInfoWindowAdapter(this@MainActivity))
-                //addMarkers(googleMap)
-                val placeMark = LatLng(location.latitude, location.longitude)
-                val marker  = googleMap.addMarker {
-                    position(placeMark)
-                    title(addressPlace)
-                    position(placeMark)
-                    icon(iconPeople)
+                // Log.d("TAG","ADDRESS PLACE${obj.getAddressLine(0)}")
+                addressPlace=obj.getAddressLine(0)
+
+                binding.tvPlaceName.text = obj.getAddressLine(0)
+                //Fetch Data WS
+                getDataWeather(location.latitude,location.longitude)
+
+                //Maps
+                lifecycleScope.launchWhenCreated {
+                    val mapFragment: SupportMapFragment? =
+                        supportFragmentManager.findFragmentById(R.id.map_fragment) as? SupportMapFragment
+                    val googleMap: GoogleMap? = mapFragment?.awaitMap()
+                    googleMap!!.setInfoWindowAdapter(MarkerInfoWindowAdapter(this@MainActivity))
+                    //addMarkers(googleMap)
+                    val placeMark = LatLng(location.latitude, location.longitude)
+                    val marker  = googleMap.addMarker {
+                        position(placeMark)
+                        title(addressPlace)
+                        position(placeMark)
+                        icon(iconPeople)
+                    }
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(placeMark, 15F))
+                    googleMap.uiSettings.isZoomControlsEnabled = true
                 }
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(placeMark, 15F))
-                googleMap.uiSettings.isZoomControlsEnabled = true
+
+            }catch (e : NullPointerException)
+            {
+                Toast.makeText(this,"Por favor habilita la opcion de Ubicación",Toast.LENGTH_SHORT)
+                    .show()
+               finishAffinity()
             }
         }
-
     }
 
     override fun onClickBottomNav() {
@@ -162,7 +222,8 @@ class MainActivity : AppCompatActivity(), Contract.IMainMenuView, OnMapReadyCall
 
                R.id.device_menu ->
                {
-                   Toast.makeText(this,"HOME DEVICE",Toast.LENGTH_SHORT).show()
+                   showDeviceActivity(intent.getStringExtra("id")!!,
+                       intent.getStringExtra("email")!!)
                }
 
                R.id.settings_menu ->
@@ -227,13 +288,21 @@ class MainActivity : AppCompatActivity(), Contract.IMainMenuView, OnMapReadyCall
         startActivity(intent)
     }
 
+    override fun showDeviceActivity(uid: String, email: String)
+    {
+        val intent = Intent(this, DeviceMainActivity::class.java)
+        intent.putExtra("id",uid)
+        intent.putExtra("email",email)
+        startActivity(intent)
+    }
+
     override fun onBackPressed() {
         super.onBackPressed()
         finishAffinity()
     }
 
     private val iconPeople: BitmapDescriptor by lazy {
-        val color = ContextCompat.getColor(this, R.color.status_bar)
+        val color = ContextCompat.getColor(this, R.color.status_bar_devices_primary)
         BitmapHelper.vectorToBitmap(this, R.drawable.ic_baseline_emoji_people_64, color)
     }
 

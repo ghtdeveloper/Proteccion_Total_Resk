@@ -7,12 +7,20 @@
     </style>
 
 
-    <!--Tema Material Desing para layout login by EMF Sin toolbar-->
-    <style name="materialDesignbyEMF" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <!--Tema Material Desing para layout login by EMF Sin toolbar Emergency-->
+    <style name="materialDesignbyEMFEmergency" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="titleTextColor">@color/white</item>
     </style>
+
+    <!--Tema Material Desing para layout login by EMF Sin toolbar Emergency-->
+    <style name="materialDesignbyEMFDevice" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/status_bar_devices_primary</item>
+        <item name="colorPrimaryDark">@color/status_bar_devices_primary_Dark</item>
+        <item name="titleTextColor">@color/white</item>
+    </style>
+
     <!--************************************************-->
     <style name="Rounded" parent="ShapeAppearance.MaterialComponents.SmallComponent">
         <item name="cornerFamily">rounded</item>

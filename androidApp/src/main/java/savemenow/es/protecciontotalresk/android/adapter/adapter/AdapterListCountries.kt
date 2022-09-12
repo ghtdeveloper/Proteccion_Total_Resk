@@ -101,9 +101,4 @@ Adapter<AdapterViewListCountries>(), Filterable
         return selectedFlagCountry
     }
 
-
-
-
-
-
 }
