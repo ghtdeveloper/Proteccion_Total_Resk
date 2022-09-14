@@ -155,4 +155,5 @@
     <string name="text_not_network">Tu estas sin internet ahora mismo, se requiere que tengas conexión
         al internet. Por favor apaga el modo avión o conectate
         vía WiFi o con tus datos moviles.</string>
+    <string name="text_not_device">No se encontraron dispositivos</string>
 </resources>

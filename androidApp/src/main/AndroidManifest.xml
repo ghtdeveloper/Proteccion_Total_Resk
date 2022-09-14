@@ -17,6 +17,9 @@
         android:name=".MyApp"
         android:allowBackup="false"
         android:supportsRtl="true"
+        android:icon="@mipmap/ic_launcher_app_3"
+        android:roundIcon="@mipmap/ic_launcher_app_3"
+        android:label="@string/text_splash_screen"
         android:theme="@style/AppTheme">
         <activity
             android:name=".view.smart.device.section.main.DeviceMainActivity"
